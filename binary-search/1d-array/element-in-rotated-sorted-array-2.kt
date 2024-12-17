@@ -1,7 +1,9 @@
 // array is sorted - rotated - and can have duplicate values
+// edge case here - arr[low] == arr[mid] == arr[high]
+
 fun main() {
-    val target = 7
-    var arr = intArrayOf(4,5,6,1,2,3,4)
+    val target = 2
+    var arr = intArrayOf(3,1,2,3,3,3,3)
 
     val isTargetFound = findTargetInRotatedSortedArray(
         target = target,
@@ -21,6 +23,11 @@ private fun findTargetInRotatedSortedArray(
 
     while (low <= high) {
         var mid = (low + high) / 2
+
+        while(arr[low] == arr[mid] && arr[mid] == arr[high] && low <= high) {
+            low = low + 1
+            high = high - 1
+        }
 
         if(arr[mid] == target) {
             isFound = true
