@@ -1,7 +1,7 @@
 // https://takeuforward.org/data-structure/peak-element-in-array/
 
 fun main() {
-    val arr = intArrayOf(1,2,3,4,5,6,7,8,5,1)
+    val arr = intArrayOf(-4,-3,-2,1,1,2,1)
     val peakElementPosition = peakElementInArray(arr = arr)
     println("Peak element in array: ${arr.contentToString()} is at position $peakElementPosition")
 }
@@ -31,10 +31,10 @@ fun peakElementInArray(
             return mid
         }
 
-        if(arr[mid] > arr[mid - 1]) {
-            low = mid + 1
-        } else if (arr[mid] > arr[mid + 1]) {
+        if(arr[mid - 1] > arr[mid] && arr[mid] > arr[mid+1]) {
             high = mid - 1
+        } else {
+            low = mid + 1
         }
     }
 
